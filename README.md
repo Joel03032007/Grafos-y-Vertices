@@ -1,88 +1,82 @@
-# Grafos-y-Vertices
-# Red social «Los Enlazados» · Grafo en Java
+# Red social "Club de Lectura"
 
-APE 4 · Fase 1 | Reto de grafos y vértices por grupos
-Universidad Técnica de Ambato · Facultad de Ingeniería en Sistemas, Electrónica e Industrial · Estructura de Datos
+Implementacion en Java del APE 4 - Fase 1 de Estructura de Datos. El programa representa una red social como un grafo simple, no dirigido y no ponderado.
 
-## Descripción
+## Reto representado
 
-Implementación en Java de una red social modelada como un grafo simple, no dirigido y no ponderado G = (V, E), con 6 usuarios y 5 amistades.
+La red tiene 6 vertices y 5 aristas:
 
-- V = {U1 Lucía, U2 Andrés, U3 Camila, U4 Javier, U5 Renata, U6 Fabián}
-- E = {e1 = {Lucía, Andrés}, e2 = {Andrés, Camila}, e3 = {Lucía, Camila}, e4 = {Lucía, Javier}, e5 = {Javier, Renata}}
+- `U1 Ana`, `U2 Bruno`, `U3 Carla`, `U4 David`, `U5 Elisa`, `U6 Fernando`.
+- `e1 = {Ana, Bruno}`
+- `e2 = {Bruno, Carla}`
+- `e3 = {Carla, David}`
+- `e4 = {David, Ana}`
+- `e5 = {Ana, Elisa}`
 
-La red cumple las condiciones del reto:
+Con esta informacion se cumplen las condiciones:
 
-- Tiene un ciclo: Lucía, Andrés, Camila, Lucía.
-- Tiene un vértice aislado: Fabián, con grado 0.
-- Tiene un vértice de grado mayor o igual a 3: Lucía, con grado 3.
+- Ciclo: Ana -> Bruno -> Carla -> David -> Ana.
+- Vertice aislado: Fernando, con grado 0.
+- Mayor grado: Ana, con grado 3.
+- Componentes: dos; el grupo conectado y Fernando por separado.
+- Suma de grados: `3 + 2 + 2 + 2 + 1 + 0 = 10 = 2 x 5`.
 
-## Estructura del proyecto
+## Organizacion de carpetas
 
-```
+```text
 RedSocialGrafos/
-├── src/
-│   ├── Usuario.java
-│   ├── Grafo.java
-│   └── Main.java
-└── README.txt
+|- src/
+|  |- app/
+|  |  `- Main.java              # Menu e ingreso de datos
+|  |- estructuras/
+|  |  `- GrafoSocial.java       # Matriz, relaciones y recorridos
+|  `- modelo/
+|     `- Usuario.java           # Datos de cada vertice
+|- out/                         # Clases compiladas, no se versiona
+`- README.md
 ```
 
-| Archivo | Función |
-|---|---|
-| `Usuario.java` | Guarda el id y el nombre de cada usuario. |
-| `Grafo.java` | Contiene el arreglo de usuarios, la capacidad, la cantidad y la matriz de adyacencia, junto con todas las operaciones del grafo. |
-| `Main.java` | Construye la red y muestra las respuestas a las 6 preguntas guía. |
+Separar `modelo`, `estructuras` y `app` ayuda a entender el proyecto sin mezclar los datos, la logica del grafo y la interfaz de consola.
 
-## Operaciones principales
+## Funcionalidades del menu
 
-| Método | Descripción |
-|---|---|
-| `agregarUsuario(usuario)` | Registra un usuario en la red. |
-| `agregarAmistad(a, b)` | Crea una arista entre dos usuarios. Rechaza lazos, duplicados y usuarios inexistentes. |
-| `existeRelacion(a, b)` | Indica si existe amistad entre dos usuarios. |
-| `vecinos(nombre)` | Devuelve los amigos de un usuario. |
-| `grado(nombre)` | Devuelve la cantidad de amigos de un usuario. |
-| `sumaGrados()` | Suma los grados de todos los vértices. |
-| `aislados()` | Devuelve los usuarios sin amistades. |
-| `masAmigos()` | Devuelve el usuario con mayor grado. |
-| `camino(origen, destino)` | Busca un camino entre dos usuarios (recorrido en anchura). |
-| `esConexo()` | Indica si todos los usuarios están conectados. |
-| `cantidadComponentes()` | Cuenta los grupos de usuarios conectados entre sí. |
-| `existeCiclo()` | Indica si el grafo tiene al menos un ciclo. |
+1. Registrar usuarios nuevos.
+2. Agregar amistades y rechazar lazos, duplicados o usuarios inexistentes.
+3. Consultar si existe una relacion.
+4. Mostrar vecinos.
+5. Consultar el grado de todos los usuarios.
+6. Buscar un camino usando recorrido en anchura (BFS).
+7. Mostrar resumen: ciclos, aislados, componentes, conectividad y suma de grados.
+8. Listar usuarios.
 
-## Reglas de validación
+## Compilar y ejecutar
 
-- Lazo: `agregarAmistad(Javier, Javier)` muestra `Error: un usuario no puede tener una amistad consigo mismo.`
-- Duplicado: `agregarAmistad(Camila, Andrés)` muestra `La amistad entre Andrés y Camila ya existe.`
-- Usuario inexistente: `agregarAmistad(Lucía, U7)` muestra `El usuario U7 no existe; regístrelo primero.`
+El proyecto esta configurado para JDK 26. Comprueba que `java -version` y
+`javac -version` indiquen la version 26. Estos comandos solo consultan la version;
+no cambian la configuracion. En VS Code, selecciona JDK 26 para el proyecto desde
+`Java: Configure Java Runtime`.
 
-En los tres casos el grafo se mantiene en 6 vértices y 5 aristas.
+Desde la carpeta raiz del repositorio:
 
-## Requisitos
-
-- JDK 17 o superior
-
-## Compilación y ejecución
-
-Desde la carpeta raíz del proyecto:
-
-```bash
-javac -encoding UTF-8 -d out src/*.java
-java -Dfile.encoding=UTF-8 -cp out Main
+```powershell
+$archivos = Get-ChildItem -Recurse -Filter *.java RedSocialGrafos\src | ForEach-Object { $_.FullName }
+javac --release 26 -encoding UTF-8 -d RedSocialGrafos\out $archivos
+java '-Dfile.encoding=UTF-8' -cp RedSocialGrafos\out app.Main
 ```
 
-## Resultados esperados
+La opcion `--release 26` genera clases que requieren Java 26 o superior para
+ejecutarse; no se pueden ejecutar con Java 17, 21 o 25. Si aparece
+`UnsupportedClassVersionError`, comprueba que el Java utilizado para ejecutar
+sea 26 o superior. La configuracion del proyecto en `.classpath` y los ajustes
+del compilador en `.settings/org.eclipse.jdt.core.prefs` tambien usan Java 26.
 
-- Grados: Lucía 3, Andrés 2, Camila 2, Javier 2, Renata 1, Fabián 0
-- Suma de grados: 10 = 2 × 5 aristas
-- Existe ciclo: verdadero
-- Es conexo: falso (2 componentes: los cinco conectados y Fabián solo)
-- Camino Renata a Andrés: Renata, Javier, Lucía, Andrés
-- Camino Renata a Fabián: no existe
+## Pruebas manuales sugeridas
+
+- En la opcion 7 deben aparecer 6 vertices, 5 aristas, suma 10, ciclo `si`, conectividad `no`, 2 componentes y Fernando como aislado.
+- En la opcion 2 prueba `U1` y `U1` para validar el lazo.
+- Prueba `U1` y `U2` para validar una amistad duplicada.
+- Prueba `U1` y `U9` para validar un usuario inexistente.
 
 ## Autor
 
-Joel Tisalema
-Ingeniería de Software · 3.er curso, paralelo B
-Universidad Técnica de Ambato
+Proyecto academico para Estructura de Datos - tercer semestre.
