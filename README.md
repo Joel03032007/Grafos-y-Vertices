@@ -80,3 +80,7 @@ del compilador en `.settings/org.eclipse.jdt.core.prefs` tambien usan Java 26.
 ## Autor
 
 Proyecto academico para Estructura de Datos - tercer semestre.
+
+## Fase 2
+
+[Conexión Ambato: código, instrucciones y pruebas](Fase2/README.md).
