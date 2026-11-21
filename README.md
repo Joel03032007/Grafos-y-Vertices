@@ -84,3 +84,7 @@ Proyecto academico para Estructura de Datos - tercer semestre.
 ## Fase 2
 
 [Conexión Ambato: código, instrucciones y pruebas](Fase2/README.md).
+
+## Documentación
+
+[Informe de la Fase 2 en Word](docs/Informe_APE4_Fase2.docx).
