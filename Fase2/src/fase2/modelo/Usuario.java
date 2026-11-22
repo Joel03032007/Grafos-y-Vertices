@@ -1,4 +1,4 @@
-package modelo;
+package fase2.modelo;
 
 /** Representa un vertice de la red social. */
 public class Usuario {

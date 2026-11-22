@@ -1,12 +1,12 @@
-package estructuras;
+package fase2.estructuras;
 
 import java.util.Locale;
 import java.util.StringJoiner;
-import modelo.TipoRelacion;
-import modelo.Usuario;
+import fase2.modelo.TipoRelacion;
+import fase2.modelo.Usuario;
 
-import static modelo.TipoRelacion.AMISTAD;
-import static modelo.TipoRelacion.SEGUIR;
+import static fase2.modelo.TipoRelacion.AMISTAD;
+import static fase2.modelo.TipoRelacion.SEGUIR;
 
 /** Multilista de vértices con aristas enlazadas por origen. */
 public class GrafoSocial {
