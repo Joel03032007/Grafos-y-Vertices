@@ -1,7 +1,5 @@
 {
-    "java.project.sourcePaths": [
-        "RedSocialGrafos/src"
-    ],
+    "java.project.sourcePaths": ["RedSocialGrafos/src", "Fase2/src", "Fase2/test"],
     "java.project.outputPath": "RedSocialGrafos/out",
     "java.project.referencedLibraries": []
 }

@@ -1,6 +1,6 @@
-package app;
+package fase2.app;
 
-import estructuras.GrafoSocial;
+import fase2.estructuras.GrafoSocial;
 import java.util.StringJoiner;
 
 final class Demostracion {

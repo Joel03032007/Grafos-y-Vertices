@@ -1,6 +1,6 @@
-package app;
+package fase2.app;
 
-import estructuras.GrafoSocial;
+import fase2.estructuras.GrafoSocial;
 import java.io.PrintStream;
 
 final class ConexionAmbato {

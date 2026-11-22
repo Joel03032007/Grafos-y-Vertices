@@ -51,24 +51,26 @@ Separar `modelo`, `estructuras` y `app` ayuda a entender el proyecto sin mezclar
 
 ## Compilar y ejecutar
 
-El proyecto esta configurado para JDK 26. Comprueba que `java -version` y
-`javac -version` indiquen la version 26. Estos comandos solo consultan la version;
-no cambian la configuracion. En VS Code, selecciona JDK 26 para el proyecto desde
-`Java: Configure Java Runtime`.
+Abre la carpeta raíz `Grafos-y-Vertices` en VS Code con el **Extension Pack for Java** y un JDK 17 o posterior. En **Ejecutar y depurar** (`Ctrl+Shift+D`), selecciona **Fase 1 - Club de Lectura** o **Fase 2 - Conexión Ambato** y pulsa **F5**. Los menús reciben datos en la terminal integrada. También puedes elegir **Fase 2 - Pruebas automatizadas**.
 
-Desde la carpeta raiz del repositorio:
+El punto de entrada de la Fase 1 es `RedSocialGrafos/src/app/Main.java` (`app.Main`) y el de la Fase 2 es `Fase2/src/fase2/app/Main.java` (`fase2.app.Main`).
+
+### Alternativa desde PowerShell
 
 ```powershell
-$archivos = Get-ChildItem -Recurse -Filter *.java RedSocialGrafos\src | ForEach-Object { $_.FullName }
-javac --release 26 -encoding UTF-8 -d RedSocialGrafos\out $archivos
-java '-Dfile.encoding=UTF-8' -cp RedSocialGrafos\out app.Main
+$archivos = Get-ChildItem -Path RedSocialGrafos/src,Fase2/src,Fase2/test -Recurse -Filter *.java
+javac --release 17 -encoding UTF-8 -d RedSocialGrafos/out $archivos.FullName
+
+# Fase 1
+java -cp RedSocialGrafos/out app.Main
+
+# Fase 2
+java -cp RedSocialGrafos/out fase2.app.Main
+
+# Pruebas de la Fase 2
+java -cp RedSocialGrafos/out fase2.app.PruebasGrafo
 ```
 
-La opcion `--release 26` genera clases que requieren Java 26 o superior para
-ejecutarse; no se pueden ejecutar con Java 17, 21 o 25. Si aparece
-`UnsupportedClassVersionError`, comprueba que el Java utilizado para ejecutar
-sea 26 o superior. La configuracion del proyecto en `.classpath` y los ajustes
-del compilador en `.settings/org.eclipse.jdt.core.prefs` tambien usan Java 26.
 
 ## Pruebas manuales sugeridas
 

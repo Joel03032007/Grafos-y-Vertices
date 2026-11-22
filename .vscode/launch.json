@@ -1,0 +1,26 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "request": "launch",
+            "name": "Fase 1 - Club de Lectura",
+            "mainClass": "app.Main",
+            "console": "integratedTerminal"
+        },
+        {
+            "type": "java",
+            "request": "launch",
+            "name": "Fase 2 - Conexión Ambato",
+            "mainClass": "fase2.app.Main",
+            "console": "integratedTerminal"
+        },
+        {
+            "type": "java",
+            "request": "launch",
+            "name": "Fase 2 - Pruebas automatizadas",
+            "mainClass": "fase2.app.PruebasGrafo",
+            "console": "integratedTerminal"
+        }
+    ]
+}
